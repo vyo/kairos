@@ -1,0 +1,54 @@
+import arrayGet;
+import lessThan;
+import equal;
+import greaterThan;
+//checks for another iteration of a given for loop
+//returns 1 if an iteration is available or
+//0 if the loop condition is not met
+//expects the label of the loop on the stack
+
+label loopCond;
+
+dupl;
+
+//get loop.index
+push 0;
+call arrayGet;
+
+
+copy 2;
+
+//get loop.end value
+push 1;
+call arrayGet;
+
+
+copy 3;
+
+//get loop.comparison function
+push 3;
+call arrayGet;
+
+
+dupl;
+jneg LOOPCOND_LESSTHAN;
+jzero LOOPCOND_EQUAL;
+
+call greaterThan;
+swap;
+pop;
+ret;
+
+label LOOPCOND_LESSTHAN;
+pop;
+call lessThan;
+swap;
+pop;
+ret;
+
+
+label LOOPCOND_EQUAL;
+call equal;
+swap;
+pop;
+ret;

@@ -1,0 +1,139 @@
+import arrayNew;
+import arrayGet;
+import arraySet;
+import arrayReverse;
+import charDetach;
+import get;
+import pow;
+
+
+//creates a string from the given sequence
+//and label
+//default encoding is ASCII
+//expects on the stack from top to bottom:
+//sequence
+//label
+//OR:
+//label
+//ASCII EoT
+// -- arbitrary number of ascii codes --
+// ASCII SoT
+
+
+
+label stringNew;
+
+swap;
+dupl;
+push 3;
+sub;
+jzero STRINGNEW_FROMSTACK;
+swap;
+
+//create string from sequence
+
+//create new char array
+copy 2;
+push 0;
+call arrayNew;
+
+//start index, put it between sequence and label
+push 0;
+swap;
+
+//while sequence is not empty, i.e. current char != 0
+//and next char != 0
+label STRINGNEW_FROMSEQUENCE_LOOP;
+
+call charDetach;
+
+copy 2;
+copy 2;
+
+//jump to end if sequence is empty
+add;
+jzero STRINGNEW_END;
+
+//increase array size
+copy 4;
+copy 4;
+push 1;
+add;
+call arrayNew;
+
+//set array[i]
+copy 4;
+swap;
+copy 4;
+swap;
+call arraySet;
+
+//increase i
+swap;
+push 1;
+add;
+swap;
+
+jump STRINGNEW_FROMSEQUENCE_LOOP;
+
+
+label STRINGNEW_END;
+pop;
+pop;
+pop;
+call arrayReverse;
+ret;
+
+
+//create string from stack
+label STRINGNEW_FROMSTACK;
+dupl;
+push 0;
+call arrayNew;
+
+//remove End of Text sign
+swap;
+pop;
+
+//save string name 
+push STRINGNEW_NAME;
+swap;
+store;
+//save index
+push STRINGNEW_SIZE;
+push 0;
+store;
+
+//if character is not Start of Text
+//add it to the string
+label STRINGNEW_FROMSTACK_LOOP;
+dupl;
+push 2;
+sub;
+jzero STRINGNEW_FROMSTACK_END;
+//increase size of array
+push STRINGNEW_NAME;
+get;
+push STRINGNEW_SIZE;
+get;
+push 1;
+add;
+call arrayNew;
+
+//add new element
+push STRINGNEW_NAME;
+call get;
+push STRINGNEW_SIZE;
+call get;
+push 1;
+sub;
+copy 3;
+call arraySet;
+pop;
+jump STRINGNEW_FROMSTACK_LOOP;
+
+
+label STRINGNEW_FROMSTACK_END;
+//remove Start if Text sign
+pop;
+ret;

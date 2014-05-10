@@ -1,0 +1,72 @@
+import arraySize;
+import arrayGet;
+import arraySet;
+//reverses the order of elements in the given array
+
+label arrayReverse;
+
+//get array size
+dupl;
+call arraySize;
+dupl;
+
+
+//for i = 0; i<array size / 2; i++
+//set array[i] = array[array size -1 -i]
+//set array[array size -1 -i] = array[i]
+//i.e. swap contents
+push 2;
+div;
+push 0;
+label ARRAYREVERSE_LOOP;
+copy 2;
+copy 2;
+sub;
+jzero ARRAYREVERSE_END;
+
+//get array[i] and store in temp
+copy 4;
+copy 2;
+call arrayGet;
+
+push ARRAYREVERSE_TEMP;
+swap;
+store;
+
+//get array[array size -1 -i]
+copy 4;
+copy 4;
+copy 3;
+sub;
+push 1;
+sub;
+call arrayGet;
+
+copy 5;
+swap;
+copy 3;
+swap;
+call arraySet;
+
+//set array[array size -1 -i] to temp value
+copy 4;
+copy 4;
+copy 3;
+sub;
+push 1;
+sub;
+push ARRAYREVERSE_TEMP;
+get;
+call arraySet;
+
+push 1;
+add;
+jump ARRAYREVERSE_LOOP;
+
+
+label ARRAYREVERSE_END;
+pop;
+pop;
+pop;
+pop;
+ret;

@@ -1,0 +1,59 @@
+//computes a x^n by means of exponentiation by squaring
+//expects:
+//exponent
+//base
+
+label pow;
+
+
+//x^0 = 1
+dupl;
+push 1;
+sub;
+jneg POW_ZERO;
+
+//x^1 = x
+dupl;
+push 1;
+sub;
+jzero POW_ONE;
+
+dupl;
+push 2;
+mod;
+jzero POW_EVEN;
+
+//label POW_ODD;
+push 2;
+div;
+
+copy 2;
+dupl;
+mul;
+swap;
+
+call pow;
+
+mul;
+ret;
+
+
+label POW_EVEN;
+push 2;
+div;
+swap;
+dupl;
+mul;
+swap;
+call pow;
+ret;
+
+label POW_ZERO;
+pop;
+pop;
+push 1;
+ret;
+
+label POW_ONE;
+pop;
+ret;

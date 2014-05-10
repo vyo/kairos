@@ -1,0 +1,67 @@
+label getBitWidth;
+
+//check if input is negative, change sign if so
+dupl;
+jneg GETBITWIDTH_NEG;
+jump GETBITWIDTH_POS;
+label GETBITWIDTH_NEG;
+push -1;
+mul;
+label GETBITWIDTH_POS;
+
+//store input
+push GETBITWIDTH_INPUT;
+swap;
+store;
+
+//store width
+push GETBITWIDTH_WIDTH;
+push 0;
+store;
+
+
+push 1;
+
+label GETBITWIDTH_INCREASE;
+
+//multiply by 2, to check next greater bit
+push 2;
+mul;
+//subtract input value
+dupl;
+push GETBITWIDTH_INPUT;
+get;
+sub;
+
+
+jneg GETBITWIDTH_INCREASE;
+jzero GETBITWIDTH_INCREASE;
+
+//remove subtraction result; 2^x remains on top
+pop;
+//set x = 0, move it beneath 2^x
+push 0;
+swap;
+
+label GETBITWIDTH_DECREASE;
+//divide by 2
+push 2;
+div;
+//check if result == 1
+dupl;
+push 1;
+sub;
+jzero GETBITWIDTH_END;
+//swap items, increase x by 1, swap again
+swap;
+push 1;
+add;
+swap;
+jump GETBITWIDTH_DECREASE;
+
+
+
+GETBITWIDTH_END;
+pop;
+printn;
+ret;

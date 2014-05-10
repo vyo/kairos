@@ -1,0 +1,7 @@
+label printnln;
+
+printn;
+push 10;
+printc;
+
+ret;

@@ -1,0 +1,24 @@
+//decatenates the last char from a bitsequence,
+//i.e. the last 8 bits
+//default is ASCII
+//expects a bit sequence on the stack
+//returns two bit sequences, the topmost 
+//being the last 7 bits of the original
+//the bottommost the rest of the original
+
+
+label charDetach;
+
+dupl;
+
+//right shift by 8
+push 256;
+div;
+
+swap;
+
+push 256;
+mod;
+
+
+ret;

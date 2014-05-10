@@ -1,0 +1,13 @@
+//deletes an array
+//expects a label on the stack
+
+import arrayResize;
+
+label arrayDelete;
+
+dupl;
+push 0;
+call arrayResize;
+get;
+
+ret;

@@ -1,0 +1,36 @@
+import arraySize;
+import arrayGet;
+
+//prints a string, i.e. an array of chars
+//uses ASCII by default
+
+
+label stringPrint;
+
+//get array size
+dupl;
+call arraySize;
+
+//for i = 0; i<array size; i++
+//print array[i]
+push 0;
+label STRINGPRINT_LOOP;
+copy 2;
+copy 2;
+sub;
+jzero STRINGPRINT_END;
+
+
+copy 3;
+copy 2;
+call arrayGet;
+printc;
+push 1;
+add;
+jump STRINGPRINT_LOOP;
+
+label STRINGPRINT_END;
+pop;
+pop;
+pop;
+ret;

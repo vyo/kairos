@@ -1,0 +1,148 @@
+import abs;
+import addH;
+import divH;
+import get;
+import getSignBit;
+import log2;
+import logicalAnd;
+import max;
+import modH;
+import pow;
+import println;
+import signum;
+
+label bitwiseAnd;
+
+//copy values to extract signs
+copy 2;
+copy 2;
+
+//get sign of a, store it
+call signum;
+push BITWISEAND_SIGN_A;
+swap;
+store;
+//get sign of b, store it
+call signum;
+push BITWISEAND_SIGN_B;
+swap;
+store;
+
+//get absolute values of a and b
+//to facilitate bitwise traversal
+call abs;
+swap;
+call abs;
+swap;
+
+//copy values to get maximum bitwitdth
+copy 2;
+copy 2;
+
+call max;
+call log2;
+
+//store bit BITWISEAND_WIDTH
+push BITWISEAND_WIDTH;
+swap;
+store;
+
+//store b
+push BITWISEAND_B;
+swap;
+store;
+
+//store a
+push BITWISEAND_A;
+swap;
+store;
+
+//store loop variable
+push i;
+push 0;
+store;
+
+//store preliminary BITWISEAND_RESULT
+push BITWISEAND_RESULT;
+push 0;
+store;
+
+
+label BITWISEAND_LOOP;
+push BITWISEAND_WIDTH;
+call get;
+push i;
+call get;
+
+//check if BITWISEAND_WIDTH - i < 0
+//i.e. all bits have been checked
+sub;
+
+jneg BITWISEAND_END;
+
+push BITWISEAND_A;
+call get;
+push 2;
+mod;
+
+push BITWISEAND_B;
+call get;
+push 2;
+mod;
+
+call logicalAnd;
+
+//multiply bit BITWISEAND_RESULT with 2^i and add to BITWISEAND_RESULT
+//i.e. set the respective bit in the BITWISEAND_RESULT
+push 2;
+push i;
+call get;
+
+call pow;
+mul;
+
+push BITWISEAND_RESULT;
+get;
+add;
+push BITWISEAND_RESULT;
+swap;
+store;
+
+push BITWISEAND_A;
+push 2;
+call divH;
+
+push BITWISEAND_B;
+push 2;
+call divH;
+
+push i;
+push 1;
+call addH;
+
+jump BITWISEAND_LOOP;
+
+label BITWISEAND_END;
+//change signs to their internal representation
+//i.e. -1 to 1, 0 to 0, 1 to 0
+push BITWISEAND_SIGN_A;
+get;
+call getSignBit;
+
+
+push BITWISEAND_SIGN_B;
+get;
+call getSignBit;
+
+//operate on sign bit
+call logicalAnd;
+push BITWISEAND_RESULT;
+get;
+swap;
+
+jzero BITWISEAND_POSITIVE;
+push -1;
+mul;
+label BITWISEAND_POSITIVE;
+
+ret;

@@ -1,0 +1,18 @@
+label get;
+
+//duplicate key
+dupl;
+//get value
+get;
+
+//copy key and value
+//store value again
+copy 2;
+copy 2;
+store;
+swap;
+pop;
+
+
+
+ret;

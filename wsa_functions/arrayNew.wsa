@@ -1,0 +1,10 @@
+//creates an array
+//stores a label designating the array
+//in the heap with its max length as value
+//store again to change length
+
+label arrayNew;
+
+store;
+
+ret;

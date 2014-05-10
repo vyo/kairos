@@ -1,0 +1,21 @@
+//performs an operation on the heap
+//takes a heap address as left hand operand
+//and a number as right hand operand
+label addH;
+
+//get key
+swap;
+//duplicate key
+dupl;
+//get value
+get;
+//get second operand on top
+copy 3;
+//perform operation
+add;
+//store result in initial location
+store;
+//remove second operand
+pop;
+
+ret;

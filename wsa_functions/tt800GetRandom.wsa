@@ -1,0 +1,217 @@
+import addH;
+import arrayGet;
+import arraySet;
+import bitwiseAnd;
+import bitwiseXor;
+import get;
+import shiftLeft;
+import shiftRight;
+
+
+//tt800, a pseudo random number generator akin to the 
+//much larger mersenne twister
+//see http://en.wikipedia.org/wiki/Mersenne-Twister 
+//for reference
+
+
+label tt800GetRandom;
+
+
+
+//if index >= N
+push TT800_INDEX;
+call get;
+push TT800_N;
+call get;
+sub;
+jneg TT800GETRANDOM_END;
+
+
+//k = 0
+push TT800GETRANDOM_K;
+push 0;
+store;
+
+
+//SECOND LOOP START
+//for (k = 0; k<N-M; k++)
+label TT800GETRANDOM_SECONDLOOP;
+push TT800GETRANDOM_K;
+call get;
+push TT800_N;
+call get;
+push TT800_M;
+call get;
+sub;
+sub;
+jzero TT800GETRANDOM_SECONDLOOP_END;
+
+
+//loop body
+//y[k] = y[k+M] ^ (y[k] >> 1) ^ A[y[k] & 1];
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+push TT800_M;
+call get;
+add;
+call arrayGet;
+
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+call arrayGet;
+//push 1;
+//call shiftRight;
+push 2;
+div;
+
+
+push TT800_A;
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+call arrayGet;
+//push 1;
+//call bitwiseAnd;
+push 2;
+mod;
+call arrayGet;
+
+
+
+call bitwiseXor;
+call bitwiseXor;
+
+
+call arraySet;
+
+push TT800GETRANDOM_K;
+push 1;
+call addH;
+jump TT800GETRANDOM_SECONDLOOP;
+//SECOND LOOP END
+
+label TT800GETRANDOM_SECONDLOOP_END;
+
+
+//THIRD LOOP START
+//for (; k<N; k++)
+label TT800GETRANDOM_THIRDLOOP;
+push TT800_N;
+call get;
+push TT800GETRANDOM_K;
+call get;
+sub;
+jzero TT800GETRANDOM_THIRDLOOP_END;
+
+//loop body
+//y[k] = y[k+(M-N)] ^ (y[k] >> 1) ^ A[y[k] & 1];
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+push TT800_M;
+call get;
+add;
+push TT800_N;
+call get;
+sub;
+call arrayGet;
+
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+call arrayGet;
+//push 1;
+//call shiftRight;
+push 2;
+div;
+
+
+push TT800_A;
+push TT800_Y;
+push TT800GETRANDOM_K;
+call get;
+call arrayGet;
+//push 1;
+//call bitwiseAnd;
+push 2;
+mod;
+call arrayGet;
+
+
+call bitwiseXor;
+call bitwiseXor;
+
+
+call arraySet;
+
+push TT800GETRANDOM_K;
+push 1;
+call addH;
+
+
+jump TT800GETRANDOM_THIRDLOOP;
+//THIRD LOOP END
+label TT800GETRANDOM_THIRDLOOP_END;
+
+
+
+
+push TT800_INDEX;
+push 0;
+store;
+
+label TT800GETRANDOM_END;
+
+
+
+push TT800_INDEX;
+call get;
+push TT800_Y;
+swap;
+call arrayGet;
+push TT800_MAX;
+call get;
+mod;
+
+dupl;
+push 7;
+call shiftLeft;
+push TT800_MAX;
+call get;
+mod;
+push 0x2b5b2500;
+call bitwiseAnd;
+call bitwiseXor;
+
+dupl;
+push 15;
+call shiftLeft;
+push TT800_MAX;
+call get;
+mod;
+push 0xdb8b0000;
+call bitwiseAnd;
+call bitwiseXor;
+
+dupl;
+push 16;
+call shiftRight;
+call bitwiseXor;
+
+
+//index++
+push TT800_INDEX;
+push 1;
+call addH;
+
+ret;

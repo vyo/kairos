@@ -1,0 +1,13 @@
+label logicalOr;
+
+add;
+push 1;
+sub;
+jneg LOGICALOR_FALSE;
+push 1;
+jump LOGICALOR_END;
+label LOGICALOR_FALSE;
+push 0;
+label LOGICALOR_END;
+
+ret;

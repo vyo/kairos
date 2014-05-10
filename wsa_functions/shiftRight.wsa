@@ -1,0 +1,23 @@
+import abs;
+import pow;
+import shiftLeft;
+
+//shifts a number by the specified amount of bits
+
+label shiftRight;
+
+dupl;
+jneg SHIFTRIGHT_LEFT;
+
+push 2;
+swap;
+call pow;
+div;
+
+ret;
+
+
+label SHIFTRIGHT_LEFT;
+call abs;
+call shiftLeft;
+ret;

@@ -1,0 +1,20 @@
+//concatenate two bit sequences of 32 bit ints
+
+//expects:
+//back int
+//front int
+
+
+label intAppend;
+
+//left shift by 32
+push 4294967296;
+
+copy 3;
+mul;
+add;
+swap;
+pop;
+
+
+ret;

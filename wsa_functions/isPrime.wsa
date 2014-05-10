@@ -1,0 +1,488 @@
+import get;
+import pow;
+import powMod;
+import tt800GetRandomRange;
+//tests a number for being prime 
+//uses the miller-selfridge-rabin test
+//see http://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test
+//for details
+//expects:
+//accuracy parameter
+//number
+
+//outputs 0 if the number is composite
+//outputs 1 if the number is probably prime
+
+label isPrime;
+
+
+//get number on top
+swap;
+
+//1 is not prime
+dupl;
+push 1;
+sub;
+jzero ISPRIME_NO;
+
+
+//2 is prime
+dupl;
+push 2;
+sub;
+jzero ISPRIME_YES;
+
+//even numbers are never prime
+dupl;
+push 2;
+mod;
+jzero ISPRIME_NO;
+
+//2 and 3 are prime
+dupl;
+push 4;
+sub;
+jneg ISPRIME_YES;
+
+//store n
+dupl;
+push ISPRIME_N;
+swap;
+store;
+
+//save n
+dupl;
+
+//get a d so that the following equation is met
+//n-1 = d * 2^s
+call ISPRIME_GET_D;
+
+//check if deterministic test is applicable
+dupl;
+push 341550071728321;
+sub;
+jneg ISPRIME_DETERMINISTIC;
+
+
+//get accuracy parameter on top
+swap;
+
+
+///////////////////////
+//MAIN LOGIC
+///////////////////////
+//for k = accuracy parameter to 0
+label ISPRIME_LOOP;
+dupl;
+jzero ISPRIME_YES;
+
+
+
+swap;
+
+//push number onto stack
+push ISPRIME_N;
+call get;
+//get a random number in the range of 2 to n-2
+push 2;
+push ISPRIME_N;
+call get;
+push 1;
+sub;
+call tt800GetRandomRange;
+
+
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+//k -= 1
+swap;
+push 1;
+sub;
+
+jump ISPRIME_LOOP;
+
+
+
+//for all deterministic instances get rid of
+//the accuracy parameter
+label ISPRIME_DETERMINISTIC;
+
+//swap;
+//pop;
+
+
+dupl;
+push 1373653;
+sub;
+jneg 1373653;
+
+dupl;
+push 9080191;
+sub;
+jneg 9080191;
+
+dupl;
+push 4759123141;
+sub;
+jneg 4759123141;
+
+dupl;
+push 2152302898747;
+sub;
+jneg 2152302898747;
+
+dupl;
+push 3474749660383;
+sub;
+jneg 3474749660383;
+
+jump 341550071728321;
+ret;
+
+
+
+label 341550071728321;
+
+dupl;
+push 2;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 3;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 5;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 7;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 11;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 13;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 17;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+jump ISPRIME_YES;
+ret;
+
+
+label 3474749660383;
+
+dupl;
+push 2;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 3;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 5;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 7;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 11;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 13;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+jump ISPRIME_YES;
+ret;
+
+label 2152302898747;
+
+dupl;
+push 2;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 3;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 5;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 7;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 11;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+jump ISPRIME_YES;
+ret;
+
+
+label 4759123141;
+
+dupl;
+push 2;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 7;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 61;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+jump ISPRIME_YES;
+ret;
+
+label 9080191;
+
+dupl;
+push 31;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 73;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+jump ISPRIME_YES;
+ret;
+
+
+label 1373653;
+
+dupl;
+push 2;
+
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+dupl;
+push 3;
+call ISPRIME_TEST;
+jzero ISPRIME_NO;
+
+jump ISPRIME_YES;
+ret;
+
+
+
+
+
+
+//compute d so that
+//n-1 = d * 2^s
+//expects n on the stack
+label ISPRIME_GET_D;
+
+//d = (n-1)/2
+dupl;
+push 2;
+div;
+push ISPRIME_D;
+swap;
+store;
+
+
+//s = 1
+push ISPRIME_S;
+push 1;
+store;
+
+push 1;
+
+//compute d with s from 1
+label ISPRIME_GET_D_LOOP;
+//check if d % 2 = 0, i.e. even
+push ISPRIME_D;
+call get;
+push 2;
+mod;
+push 1;
+sub;
+jzero ISPRIME_GET_D_END;
+
+//s += 1
+//push ISPRIME_S;
+//call get;
+push 1;
+add;
+dupl;
+push ISPRIME_S;
+swap;
+store;
+
+//d /= 2
+push ISPRIME_D;
+call get;
+push 2;
+div;
+push ISPRIME_D;
+swap;
+store;
+
+jump ISPRIME_GET_D_LOOP;
+
+label ISPRIME_GET_D_END;
+pop;
+pop;
+ret;
+
+
+
+
+
+
+//tests a number for primality by use of a given base a
+//a^d mod n
+//expects:
+//base
+//number
+label ISPRIME_TEST;
+
+swap;
+
+push ISPRIME_D;
+call get;
+
+swap;
+
+call powMod;
+
+
+//if x = 1 continue
+dupl;
+push 1;
+sub;
+dupl;
+jzero ISPRIME_TEST_YES;
+pop;
+
+//if x = n-1 continue
+dupl;
+push ISPRIME_N;
+call get;
+push 1;
+sub;
+sub;
+dupl;
+jzero ISPRIME_TEST_YES;
+pop;
+
+
+
+//from r = 1 to s-1
+push 0;
+label ISPRIME_TEST_LOOP;
+//until r = s
+dupl;
+push ISPRIME_S;
+call get;
+sub;
+
+
+jzero ISPRIME_TEST_NO;
+swap;
+
+
+
+//x = x*x mod n
+dupl;
+mul;
+push ISPRIME_N;
+call get;
+mod;
+
+
+//if x = 1 return NO
+dupl;
+push 1;
+sub;
+jzero ISPRIME_TEST_NO;
+
+
+//if x = n-1 return yes
+dupl;
+push ISPRIME_N;
+call get;
+push 1;
+sub;
+sub;
+jzero ISPRIME_TEST_YES;
+
+
+//r += 1
+swap;
+push 1;
+add;
+
+jump ISPRIME_TEST_LOOP;
+
+
+label ISPRIME_TEST_NO;
+pop;
+pop;
+push 0;
+ret;
+
+label ISPRIME_TEST_YES;
+pop;
+pop;
+push 1;
+ret;
+
+
+
+
+
+
+
+
+
+label ISPRIME_NO;
+pop;
+pop;
+push 0;
+ret;
+
+label ISPRIME_YES;
+pop;
+pop;
+push 1;
+ret;

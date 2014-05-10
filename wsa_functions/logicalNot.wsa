@@ -1,0 +1,12 @@
+label logicalNot;
+
+
+push 1;
+sub;
+dupl;
+jzero LOGICALNOT_END;
+pop;
+push 1;
+label LOGICALNOT_END;
+
+ret;

@@ -1,0 +1,9 @@
+//gets the size of an array
+import get;
+
+
+label arraySize;
+
+call get;
+
+ret;

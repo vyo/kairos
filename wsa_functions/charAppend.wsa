@@ -1,0 +1,22 @@
+//concatenate two bit sequences
+//NOTE: uses ASCII for compatibility with Kairos interpreter
+//appends a zero since unsigned values are not available
+
+//expects:
+//character
+//sequence
+
+
+label charAppend;
+
+//left shift by 8
+push 256;
+
+copy 3;
+mul;
+add;
+swap;
+pop;
+
+
+ret;

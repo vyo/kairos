@@ -1,0 +1,14 @@
+//reads in a number analogous to the read instructions
+//expects values with base 10, i.e. decimal numbers
+//reads single digits until a 10 (new line) is encountered
+//first input may be a 45 (-)
+
+
+
+label readNumber;
+
+
+dupl;
+readn;
+
+ret;

@@ -1,0 +1,12 @@
+//tests if a = b
+//returns 1 if true, 0 if false
+
+label equal;
+
+sub;
+jzero EQUAL_END;
+push 0;
+ret;
+label EQUAL_END;
+push 1;
+ret;

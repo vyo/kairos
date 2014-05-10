@@ -1,0 +1,18 @@
+//decatenates the last 32 bit int from a bitsequence,
+
+
+label charDetach;
+
+dupl;
+
+//right shift by 32
+push 4294967296;
+div;
+
+swap;
+
+push 4294967296;
+mod;
+
+
+ret;

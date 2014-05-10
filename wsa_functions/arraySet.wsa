@@ -1,0 +1,49 @@
+import arraySize;
+import charAppend;
+//set the specified cell in the array
+//expects three items on the stack
+//from top to bottom:
+//value
+//cell
+//array
+
+label arraySet;
+
+swap;
+dupl;
+jneg ARRAYSET_NEG;
+
+//compute size - index
+copy 3;
+call arraySize;
+copy 2;
+sub;
+
+//if index is out of bounds return
+dupl;
+jneg ARRAYSET_NEG;
+jzero ARRAYSET_NEG;
+
+swap;
+//get array and cell
+copy 3;
+copy 3;
+
+//build address and store value
+call charAppend;
+swap;
+store;
+
+//discard array and cell
+pop;
+pop;
+
+ret;
+
+
+//return if index is negative
+label ARRAYSET_NEG;
+pop;
+pop;
+pop;
+ret;

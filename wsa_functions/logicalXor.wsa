@@ -1,0 +1,13 @@
+label logicalXor;
+
+add;
+push 1;
+sub;
+jzero LOGICALXOR_TRUE;
+push 0;
+jump LOGICALXOR_END;
+label LOGICALXOR_TRUE;
+push 1;
+label LOGICALXOR_END;
+
+ret;

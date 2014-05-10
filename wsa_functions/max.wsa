@@ -1,0 +1,17 @@
+label max;
+
+copy 2;
+copy 2;
+
+sub;
+
+jneg MAX_SECOND;
+jump MAX_END;
+
+label MAX_SECOND;
+swap;
+
+label MAX_END;
+pop;
+
+ret;

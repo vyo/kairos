@@ -1,0 +1,8 @@
+label remove;
+
+//retrieve value from heap
+//delete it
+get;
+pop;
+
+ret;
