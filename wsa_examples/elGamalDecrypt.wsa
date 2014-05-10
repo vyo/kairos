@@ -1,0 +1,33 @@
+import get;
+import powMod;
+//implementation of the elGamal public key cryptsystem
+//expects two numbers c1 and c2 on the stack
+//returns m 
+
+
+label elGamalDecrypt;
+
+//get c1 on top
+swap;
+
+//compute the inverse of a
+push ELGAMAL_P;
+call get;
+push ELGAMAL_A;
+call get;
+push 1;
+add;
+sub;
+
+
+push ELGAMAL_P;
+call get;
+call powMod;
+
+mul;
+
+push ELGAMAL_P;
+call get;
+mod;
+
+ret;

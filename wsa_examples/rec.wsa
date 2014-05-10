@@ -1,0 +1,20 @@
+//a recursive function
+
+
+label rec;
+
+dupl;
+push 1;
+sub;
+jneg REC_END;
+
+dupl;
+printn;
+push 10;
+printc;
+
+push 1;
+sub;
+call rec;
+label REC_END;
+ret;
