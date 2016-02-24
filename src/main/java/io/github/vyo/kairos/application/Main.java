@@ -13,7 +13,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-	
+
 		if(args.length == 0){
 			Main.runInteractiveSession();
 		}
@@ -32,28 +32,62 @@ public class Main {
 		else {
 			Main.runInteractiveSession();
 		}
-		
+
 	}
-	
+
 	private static void runInteractiveSession(){
-		
+
 		String input = "";
 		Scanner console = new Scanner(System.in);
-		
+
 		System.out.println("Welcome to Kairos, a tool for the importing, interpreting, translating,");
 		System.out.println("and weaving of code written in Whitespace or WhitespaceAssembler.\n");
 		System.out.println("Where would you like to go?\n");
 		System.out.println("\t(1) Importer");
 		System.out.println("\t(2) Interpreter");
-		System.out.println("\t(3) Translater");
+		System.out.println("\t(3) Translator");
 		System.out.println("\t(4) Weaver");
 		System.out.println("\t(5) Exit");
 
-		input = console.next();
-		
+		Integer opCode = null;
+		Boolean opCodeValid = false;
 
-		
+		while (!opCodeValid) {
+			input = console.next();
+			try {
+				opCode = Integer.parseInt(input);
+				if (opCode < 1 || opCode > 5) {
+					System.out.print("Not a valid operation number - " + input);
+					continue;
+				}
+				opCodeValid = true;
+			} catch (NumberFormatException e) {
+				System.out.print("Not a valid operation number - " + input);
+			}
+		}
+
+		System.out.println("\tPlease specify the file(s) you want to run this command on:");
+
+		String[] args = console.next().split(" ");
+
+		switch (opCode) {
+			case 1:
+				Importer.getInstanceOf().resolve(args[0], args[1]);
+				break;
+			case 2:
+				Interpreter.getInstanceOf().run(args[0]);
+				break;
+			case 3:
+				Translator.getInstanceOf().translate(args[0]);
+				break;
+			case 4:
+				Weaver.getInstanceOf().weave(args[0], args[1]);
+				break;
+			case 5:
+				break;
+		}
+
 		console.close();
-		
+
 	}
 }
