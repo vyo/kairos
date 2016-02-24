@@ -1,0 +1,29 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '1.2.2'
+}
+
+apply plugin: 'application'
+apply plugin: 'java'
+apply plugin: 'idea'
+
+group = 'io.github.vyo'
+version = '1.0.0'
+
+mainClassName = 'io.github.vyo.kairos.application.Main'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceSets {
+    main.java.srcDirs += 'src/main/java'
+}
+
+run{
+    standardInput = System.in
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.7'
+}
