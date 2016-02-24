@@ -1,6 +1,4 @@
-package weaver;
-
-import weaver.Weaver;
+package io.github.vyo.kairos.weaver;
 
 public class Weaver {
 

@@ -1,13 +1,11 @@
-package main;
+package io.github.vyo.kairos.application;
 
 import java.util.Scanner;
 
-import javax.swing.JFrame;
-
-import translator.Translator;
-import weaver.Weaver;
-import importer.Importer;
-import interpreter.Interpreter;
+import io.github.vyo.kairos.translator.Translator;
+import io.github.vyo.kairos.weaver.Weaver;
+import io.github.vyo.kairos.importer.Importer;
+import io.github.vyo.kairos.interpreter.Interpreter;
 
 public class Main {
 
@@ -53,8 +51,7 @@ public class Main {
 
 		input = console.next();
 		
-		
-		
+
 		
 		console.close();
 		

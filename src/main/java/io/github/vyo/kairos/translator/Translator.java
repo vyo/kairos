@@ -1,4 +1,4 @@
-package translator;
+package io.github.vyo.kairos.translator;
 
 import java.io.File;
 import java.io.FileReader;

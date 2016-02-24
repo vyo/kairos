@@ -1,15 +1,16 @@
-package interpreter.instructions;
+package io.github.vyo.kairos.interpreter.instructions;
 
 import java.math.BigInteger;
 
-import translator.Translator;
+import io.github.vyo.kairos.interpreter.structures.Stack;
+import io.github.vyo.kairos.translator.Translator;
 
 public class StackInstructions extends Instructions {
 
-	private interpreter.structures.Stack stack;
+	private Stack stack;
 
 	public StackInstructions() {
-		stack = interpreter.structures.Stack.getInstanceOf();
+		stack = Stack.getInstanceOf();
 	}
 
 	public void push(BigInteger b) {

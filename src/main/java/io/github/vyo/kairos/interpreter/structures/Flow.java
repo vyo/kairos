@@ -1,4 +1,4 @@
-package interpreter.structures;
+package io.github.vyo.kairos.interpreter.structures;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

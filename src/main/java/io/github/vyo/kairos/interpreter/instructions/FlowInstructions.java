@@ -1,9 +1,9 @@
-package interpreter.instructions;
+package io.github.vyo.kairos.interpreter.instructions;
 
 import java.math.BigInteger;
 
-import interpreter.structures.Flow;
-import interpreter.structures.Stack;
+import io.github.vyo.kairos.interpreter.structures.Flow;
+import io.github.vyo.kairos.interpreter.structures.Stack;
 
 public class FlowInstructions extends Instructions {
 

@@ -1,6 +1,4 @@
-package interpreter.structures;
-
-import interpreter.structures.Heap;
+package io.github.vyo.kairos.interpreter.structures;
 
 import java.math.BigInteger;
 

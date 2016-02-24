@@ -1,4 +1,4 @@
-package interpreter.instructions;
+package io.github.vyo.kairos.interpreter.instructions;
 
 public abstract class Instructions {
 	

@@ -1,13 +1,15 @@
-package interpreter.instructions;
+package io.github.vyo.kairos.interpreter.instructions;
+
+import io.github.vyo.kairos.interpreter.structures.Stack;
 
 import java.math.BigInteger;
 
 public class ArithmeticInstructions extends Instructions {
 
-	private interpreter.structures.Stack stack;
+	private Stack stack;
 	
 	public ArithmeticInstructions(){
-		stack = interpreter.structures.Stack.getInstanceOf();
+		stack = Stack.getInstanceOf();
 	}
 	
 	private void add(){

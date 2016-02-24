@@ -1,17 +1,21 @@
-package interpreter.instructions;
+package io.github.vyo.kairos.interpreter.instructions;
+
+import io.github.vyo.kairos.interpreter.structures.Heap;
+import io.github.vyo.kairos.interpreter.structures.IO;
+import io.github.vyo.kairos.interpreter.structures.Stack;
 
 import java.math.BigInteger;
 
 public class IOInstructions extends Instructions {
 
-	private interpreter.structures.Stack stack;
-	private interpreter.structures.Heap heap;
-	private interpreter.structures.IO io;
+	private Stack stack;
+	private Heap heap;
+	private IO io;
 
 	public IOInstructions() {
-		stack = interpreter.structures.Stack.getInstanceOf();
-		heap = interpreter.structures.Heap.getInstanceOf();
-		io = interpreter.structures.IO.getInstanceOf();
+		stack = Stack.getInstanceOf();
+		heap = Heap.getInstanceOf();
+		io = IO.getInstanceOf();
 	}
 
 	public void printn() {

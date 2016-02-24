@@ -1,9 +1,9 @@
-package interpreter;
+package io.github.vyo.kairos.interpreter;
 
-import translator.Translator;
-import importer.Importer;
-import interpreter.structures.Flow;
-import interpreter.instructions.*;
+import io.github.vyo.kairos.interpreter.instructions.*;
+import io.github.vyo.kairos.interpreter.structures.Flow;
+import io.github.vyo.kairos.translator.Translator;
+import io.github.vyo.kairos.importer.Importer;
 
 public class Interpreter {
 
