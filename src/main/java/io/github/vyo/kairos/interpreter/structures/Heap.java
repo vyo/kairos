@@ -3,31 +3,31 @@ package io.github.vyo.kairos.interpreter.structures;
 import java.math.BigInteger;
 
 public class Heap {
-	
-	private java.util.HashMap<BigInteger, BigInteger> heap;
-	private static Heap instance = null;
 
-	private Heap() {
-		heap = new java.util.HashMap<BigInteger, BigInteger>();
-	}
+    private java.util.HashMap<BigInteger, BigInteger> heap;
+    private static Heap instance = null;
 
-	public static Heap getInstanceOf() {
-		if (instance == null) {
+    private Heap() {
+        heap = new java.util.HashMap<BigInteger, BigInteger>();
+    }
 
-			instance = new Heap();
-		}
+    public static Heap getInstanceOf() {
+        if (instance == null) {
 
-		return instance;
+            instance = new Heap();
+        }
 
-	}
-	
-	public void put(BigInteger key, BigInteger value){
-		heap.put(key, value);
-	}
-	
-	public BigInteger get(BigInteger key){
-		BigInteger b= heap.get(key);
-		heap.remove(key);
-		return b;
-	}
+        return instance;
+
+    }
+
+    public void put(BigInteger key, BigInteger value) {
+        heap.put(key, value);
+    }
+
+    public BigInteger get(BigInteger key) {
+        BigInteger b = heap.get(key);
+        heap.remove(key);
+        return b;
+    }
 }

@@ -7,31 +7,30 @@ import java.math.BigInteger;
 
 public class HeapInstructions extends Instructions {
 
-private Heap heap;
-private Stack stack;
-	
-	public HeapInstructions(){
-		heap = Heap.getInstanceOf();
-		stack = Stack.getInstanceOf();
-	}
+    private Heap heap;
+    private Stack stack;
 
-	private void store(){
-		BigInteger value = stack.pop();
+    public HeapInstructions() {
+        heap = Heap.getInstanceOf();
+        stack = Stack.getInstanceOf();
+    }
 
-		heap.put(stack.pop(), value);
-	}
-	
-	private void get(){
-		stack.push(heap.get(stack.pop()));
-	}
-	
-	@Override
-	public void execute(String... instruction){
-		if(instruction[0].equals("store")){
-			store();
-		}
-		else if(instruction[0].equals("get")){
-			get();
-		}
-	}
+    private void store() {
+        BigInteger value = stack.pop();
+
+        heap.put(stack.pop(), value);
+    }
+
+    private void get() {
+        stack.push(heap.get(stack.pop()));
+    }
+
+    @Override
+    public void execute(String... instruction) {
+        if (instruction[0].equals("store")) {
+            store();
+        } else if (instruction[0].equals("get")) {
+            get();
+        }
+    }
 }

@@ -8,69 +8,69 @@ import java.util.HashMap;
 
 public class Flow {
 
-	private ArrayList<String> code;
-	private HashMap<String, Integer> labels;
-	private int programCounter;
-	private java.util.Stack<Integer> returnAddresses;
-	private static Flow instance = null;
+    private ArrayList<String> code;
+    private HashMap<String, Integer> labels;
+    private int programCounter;
+    private java.util.Stack<Integer> returnAddresses;
+    private static Flow instance = null;
 //	private boolean importing;
 //	private ArrayList<String> imports;
 //	private String path;
 //	private String baseFile;
 //	private String currentFile;
 
-	private Flow() {
-		code = new ArrayList<String>();
-		programCounter = 0;
-		returnAddresses = new java.util.Stack<Integer>();
-		setReturnAddress(programCounter);
-		labels = new HashMap<String, Integer>();
+    private Flow() {
+        code = new ArrayList<String>();
+        programCounter = 0;
+        returnAddresses = new java.util.Stack<Integer>();
+        setReturnAddress(programCounter);
+        labels = new HashMap<String, Integer>();
 //		importing = false;
 //		imports = new ArrayList<String>();
 //		path = "";
 //		baseFile = "";
 //		currentFile = "";
-	}
+    }
 
-	public static Flow getInstanceOf() {
-		if (instance == null) {
+    public static Flow getInstanceOf() {
+        if (instance == null) {
 
-			instance = new Flow();
-		}
+            instance = new Flow();
+        }
 
-		return instance;
+        return instance;
 
-	}
+    }
 
-	public void read(String destination) {
+    public void read(String destination) {
 
-	
-		FileReader fileReader = null;
 
-		try {
+        FileReader fileReader = null;
+
+        try {
 //			if (destination.endsWith(".ws")) {
 //				Translator.getInstanceOf().translate(destination);
 //				fileReader = new FileReader(destination + 'a');
 //			} else {
-				fileReader = new FileReader(destination);
+            fileReader = new FileReader(destination);
 //			}
 
-			BufferedReader reader = new BufferedReader(fileReader);
+            BufferedReader reader = new BufferedReader(fileReader);
 
-			String instruction = reader.readLine();
-			
-			while (instruction != null) {
+            String instruction = reader.readLine();
 
-				if (instruction.equals("")) {
-					instruction = reader.readLine();
-					continue;
-				} else if (instruction.startsWith("/")) {
-					instruction = reader.readLine();
-					continue;
-				}
+            while (instruction != null) {
 
-				instruction = instruction
-						.substring(0, instruction.length() - 1);
+                if (instruction.equals("")) {
+                    instruction = reader.readLine();
+                    continue;
+                } else if (instruction.startsWith("/")) {
+                    instruction = reader.readLine();
+                    continue;
+                }
+
+                instruction = instruction
+                        .substring(0, instruction.length() - 1);
 
 //				if (instruction.startsWith("import")) {
 //					
@@ -105,67 +105,66 @@ public class Flow {
 //					importing = false;
 //				}
 
-				code.add(instruction);
+                code.add(instruction);
 
-				if (instruction.split(" ")[0].equals("label")) {
-					labels.put(instruction.split(" ")[1], programCounter);
-				}
-				programCounter++;
+                if (instruction.split(" ")[0].equals("label")) {
+                    labels.put(instruction.split(" ")[1], programCounter);
+                }
+                programCounter++;
 
-				instruction = reader.readLine();
+                instruction = reader.readLine();
 
-			}
+            }
 
 //			if (!importing){
-				programCounter = 0;
+            programCounter = 0;
 //			}
-			
-			
+
 
 //			for (int i = 0; i < code.size(); i++) {
 //				System.out.println(i + ": " + code.get(i));
 //			}
 
-			reader.close();
-			fileReader.close();
+            reader.close();
+            fileReader.close();
 
-		} catch (IOException ioe) {
+        } catch (IOException ioe) {
 //			System.out.println("Shit happened while loading "+destination+" as part of "+baseFile);
-		}
+        }
 
-	}
+    }
 
-	public void increaseProgramCounter() {
-		programCounter++;
-	}
+    public void increaseProgramCounter() {
+        programCounter++;
+    }
 
-	public void setProgramCounter(int i) {
-		programCounter = i;
-	}
+    public void setProgramCounter(int i) {
+        programCounter = i;
+    }
 
-	public int getProgramCounter() {
-		return programCounter;
-	}
+    public int getProgramCounter() {
+        return programCounter;
+    }
 
-	public String getLine(int i) {
-		return code.get(i);
-	}
+    public String getLine(int i) {
+        return code.get(i);
+    }
 
-	public void addLine(String line) {
-		code.add(line);
-	}
+    public void addLine(String line) {
+        code.add(line);
+    }
 
-	public int getLabelPosition(String label) {
-		return labels.get(label);
-	}
+    public int getLabelPosition(String label) {
+        return labels.get(label);
+    }
 
-	public int getReturnAddress() {
-		return returnAddresses.pop();
-	}
+    public int getReturnAddress() {
+        return returnAddresses.pop();
+    }
 
-	public void setReturnAddress(int returnAddress) {
-		returnAddresses.push(returnAddress);
-		
-	}
+    public void setReturnAddress(int returnAddress) {
+        returnAddresses.push(returnAddress);
+
+    }
 
 }
