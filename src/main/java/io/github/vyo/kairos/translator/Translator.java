@@ -372,7 +372,7 @@ public class Translator {
 
                         }
 
-                        temp += ";\n";
+                        temp += "\n";
                         writer.append(temp);
 
                         buffer = new StringBuffer("");
@@ -452,7 +452,7 @@ public class Translator {
                             reader.read(); // read the space between
                             // instruction and value
                             c = (char) reader.read();
-                            while (c != ';') {
+                            while (c != '\n') {
                                 temp += c;
                                 c = (char) reader.read();
                             }
@@ -473,9 +473,6 @@ public class Translator {
                             temp = Translator.toWhitespaceEncoding(temp);
                             temp += '\n';
 
-                        } else {
-                            reader.read(); // read the semicolon at the end
-                            // of instruction
                         }
 
                         reader.read(); // read the newline character after

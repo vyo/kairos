@@ -1,33 +1,33 @@
-import stringNew;
+import stringNew
 //reads in a sequence of chars terminated by 0x03,
 //i.e. ASCII End of Text
 //expects a label on the stack
 
 
-label stringRead;
+label stringRead
 
 
 //push Start of, i.e. 0x02 Text onto stack
-push 2;
-swap;
+push 2
+swap
 
 
 //read in character and check if it is EOT
 //if not, proceed
-label STRINGREAD_LOOP;
-push STRINGREAD_TEMP;
-dupl;
-readc;
-get;
-dupl;
-push 3;
-sub;
-jzero STRINGREAD_END;
-swap;
+label STRINGREAD_LOOP
+push STRINGREAD_TEMP
+dupl
+readc
+get
+dupl
+push 3
+sub
+jzero STRINGREAD_END
+swap
 
-jump STRINGREAD_LOOP;
+jump STRINGREAD_LOOP
 
-label STRINGREAD_END;
-swap;
-call stringNew;
-ret;
+label STRINGREAD_END
+swap
+call stringNew
+ret

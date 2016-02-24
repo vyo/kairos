@@ -1,27 +1,27 @@
-label signum;
+label signum
 
 //duplicate value for double checks
 //for negativity and zero
-dupl;
-jzero SIGNUM_ZERO;
-jneg SIGNUM_NEG;
+dupl
+jzero SIGNUM_ZERO
+jneg SIGNUM_NEG
 
 //if value is positive return +1
-push 1;
-jump SIGNUM_END;
+push 1
+jump SIGNUM_END
 
 
 
 //if value is zero return 0
-label SIGNUM_ZERO;
-pop;
-push 0;
-jump SIGNUM_END;
+label SIGNUM_ZERO
+pop
+push 0
+jump SIGNUM_END
 
 //if value is negative return -1
-label SIGNUM_NEG;
-push -1;
+label SIGNUM_NEG
+push -1
 
-label SIGNUM_END;
+label SIGNUM_END
 
-ret;
+ret

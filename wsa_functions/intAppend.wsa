@@ -5,16 +5,16 @@
 //front int
 
 
-label intAppend;
+label intAppend
 
 //left shift by 32
-push 4294967296;
+push 4294967296
 
-copy 3;
-mul;
-add;
-swap;
-pop;
+copy 3
+mul
+add
+swap
+pop
 
 
-ret;
+ret

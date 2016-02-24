@@ -1,6 +1,6 @@
-import arrayGet;
-import arrayNew;
-import arraySet;
+import arrayGet
+import arrayNew
+import arraySet
 
 //provides loop initialization
 //it can be used for iterative loops or when special care
@@ -22,58 +22,58 @@ import arraySet;
 
 
 //code flow should look as follows
-//push LABEL;
-//push START;
-//push END;
-//push INCREMENT;
-//push COMPARISON;
-//call loopInit;
-//label LABEL;
-//push LABEL;
-//call loopCheck;
-//jzero LABEL_END;
+//push LABEL
+//push START
+//push END
+//push INCREMENT
+//push COMPARISON
+//call loopInit
+//label LABEL
+//push LABEL
+//call loopCheck
+//jzero LABEL_END
 // - - -- - - -- - - 
 // - - loop body - -
 // - - -- - - -- - -
-//push LABEL;
-//call loopInc;
-//jump LABEL;
-//label LABEL_END;
+//push LABEL
+//call loopInc
+//jump LABEL
+//label LABEL_END
 
 
 
-label loopInit;
+label loopInit
 
 //create new array 
-copy 5;
-push 5;
-call arrayNew;
+copy 5
+push 5
+call arrayNew
 
 //set array[3] = comparison function
-copy 5;
-swap;
-push 3;
-swap;
-call arraySet;
+copy 5
+swap
+push 3
+swap
+call arraySet
 
 //set array[2] = increment value
-copy 4;
-swap;
-push 2;
-swap;
-call arraySet;
+copy 4
+swap
+push 2
+swap
+call arraySet
 
 //set array[1] = end value
-copy 3;
-swap;
-push 1;
-swap;
-call arraySet;
+copy 3
+swap
+push 1
+swap
+call arraySet
 
 //set array[0] = start value / index
-push 0;
-swap;
-call arraySet;
+push 0
+swap
+call arraySet
 
 
-ret;
+ret

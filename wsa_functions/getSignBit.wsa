@@ -1,12 +1,12 @@
-import signum;
+import signum
 
-label getSignBit;
+label getSignBit
 
-call signum;
+call signum
 
-jneg GETSIGNBIT_ONE;
-push 0;
-ret;
-label GETSIGNBIT_ONE;
-push 1;
-ret;
+jneg GETSIGNBIT_ONE
+push 0
+ret
+label GETSIGNBIT_ONE
+push 1
+ret

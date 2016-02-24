@@ -1,4 +1,4 @@
-import get;
+import get
 //computes a x^n mod p by means of exponentiation by squaring
 //expects:
 //modul
@@ -6,82 +6,82 @@ import get;
 //base
 
 
-label powMod;
+label powMod
 
-push POWMOD_MOD;
-swap;
-store;
+push POWMOD_MOD
+swap
+store
 
 
 //x^0 = 1
-dupl;
-push 1;
-sub;
-jneg POWMOD_ZERO;
+dupl
+push 1
+sub
+jneg POWMOD_ZERO
 
 //x^1 = x
-dupl;
-push 1;
-sub;
-jzero POWMOD_ONE;
+dupl
+push 1
+sub
+jzero POWMOD_ONE
 
-dupl;
-push 2;
-mod;
-jzero POWMOD_EVEN;
+dupl
+push 2
+mod
+jzero POWMOD_EVEN
 
-//label POWMOD_ODD;
-push 2;
-div;
+//label POWMOD_ODD
+push 2
+div
 
-copy 2;
-dupl;
-mul;
-push POWMOD_MOD;
-call get;
-mod;
-swap;
-push POWMOD_MOD;
-call get;
-call powMod;
+copy 2
+dupl
+mul
+push POWMOD_MOD
+call get
+mod
+swap
+push POWMOD_MOD
+call get
+call powMod
 
-mul;
-push POWMOD_MOD;
-call get;
-mod;
-ret;
+mul
+push POWMOD_MOD
+call get
+mod
+ret
 
 
-label POWMOD_EVEN;
-push 2;
-div;
-swap;
-dupl;
-mul;
-push POWMOD_MOD;
-call get;
-mod;
-swap;
-push POWMOD_MOD;
-call get;
-call powMod;
-push POWMOD_MOD;
-call get;
-mod;
-ret;
+label POWMOD_EVEN
+push 2
+div
+swap
+dupl
+mul
+push POWMOD_MOD
+call get
+mod
+swap
+push POWMOD_MOD
+call get
+call powMod
+push POWMOD_MOD
+call get
+mod
+ret
 
-label POWMOD_ZERO;
-pop;
-pop;
-push 1;
-push POWMOD_MOD;
-call get;
-mod;
-ret;
+label POWMOD_ZERO
+pop
+pop
+push 1
+push POWMOD_MOD
+call get
+mod
+ret
 
-label POWMOD_ONE;
-pop;
-push POWMOD_MOD;
-call get;
-mod;
-ret;
+label POWMOD_ONE
+pop
+push POWMOD_MOD
+call get
+mod
+ret

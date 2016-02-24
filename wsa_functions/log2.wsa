@@ -1,65 +1,65 @@
-import abs;
-import get;
+import abs
+import get
 
-label log2;
+label log2
 
 
 //check if input is negative, change sign if so
-call abs;
+call abs
 
 //store input
-push LOG2_TEMP;
-swap;
-store;
+push LOG2_TEMP
+swap
+store
 
-push 1;
+push 1
 
-dupl;
+dupl
 
-label LOG2_INCREASE;
+label LOG2_INCREASE
 //discard top item if only one check was performed
-pop;
-label LOG2_INCREASE2;
+pop
+label LOG2_INCREASE2
 
 //multiply by 2, to check next greater power of 2
-push 2;
-mul;
+push 2
+mul
 
 //subtract input value
-dupl;
-push LOG2_TEMP;
-call get;
-sub;
+dupl
+push LOG2_TEMP
+call get
+sub
 
 //duplicate check value because of double checks
-dupl;
-jneg LOG2_INCREASE;
-jzero LOG2_INCREASE2;
+dupl
+jneg LOG2_INCREASE
+jzero LOG2_INCREASE2
 
 //set x = 0, move it beneath 2^x+c
-push 0;
-swap;
+push 0
+swap
 
-label LOG2_DECREASE;
+label LOG2_DECREASE
 
 //divide by 2
-push 2;
-div;
+push 2
+div
 //check if result == 1
-dupl;
-push 1;
-sub;
-jzero LOG2_END;
+dupl
+push 1
+sub
+jzero LOG2_END
 //swap items, increase x by 1, swap again
-swap;
-push 1;
-add;
-swap;
-jump LOG2_DECREASE;
+swap
+push 1
+add
+swap
+jump LOG2_DECREASE
 
 
 
-label LOG2_END;
-pop;
+label LOG2_END
+pop
 
-ret;
+ret

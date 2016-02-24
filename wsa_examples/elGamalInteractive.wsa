@@ -1,188 +1,188 @@
-import elGamalEncrypt;
-import elGamalDecrypt;
-import stringNew;
-import stringPrint;
-import tt800Init;
+import elGamalEncrypt
+import elGamalDecrypt
+import stringNew
+import stringPrint
+import tt800Init
 
 //requests an input which is subsequently
 //encrypted using an elGamal implementation
 //and then decrypted and printed
 
-label elGamal;
+label elGamal
 
-call tt800Init;
+call tt800Init
 
-push s;
-push Beware! Random number generation is incredibly time-consuming;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
+push s
+push Beware! Random number generation is incredibly time-consuming
+call stringNew
+push s
+call stringPrint
+push 32
+printc
 
-push 10;
-printc;
+push 10
+printc
 
-push s;
-push because Whitespace does not natively support bitwise operations.;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
+push s
+push because Whitespace does not natively support bitwise operations.
+call stringNew
+push s
+call stringPrint
+push 32
+printc
 
-push 10;
-printc;
-
-
-push s;
-push Expect any encryption after the first to take lots of time.;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
-
-push 10;
-printc;
-
-push s;
-push The first one will be done in at most 5 minutes;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
-
-push 10;
-printc;
-
-push s;
-push due to nicely distributed primes. Any subsequent one will;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
-
-push 10;
-printc;
-
-push s;
-push take substantially longer - i.e. 10-50 times longer.;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
-push 10;
-printc;
-
-push s;
-push Don't forget to bring your coffee!;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
+push 10
+printc
 
 
-push 10;
-printc;
-push 10;
-printc;
+push s
+push Expect any encryption after the first to take lots of time.
+call stringNew
+push s
+call stringPrint
+push 32
+printc
 
-label CALL_INPUT_LOOP;
+push 10
+printc
 
+push s
+push The first one will be done in at most 5 minutes
+call stringNew
+push s
+call stringPrint
+push 32
+printc
 
-push 10;
-printc;
+push 10
+printc
 
-push s;
-push Please enter your matriculation number: ;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
+push s
+push due to nicely distributed primes. Any subsequent one will
+call stringNew
+push s
+call stringPrint
+push 32
+printc
 
-push m;
-readn;
+push 10
+printc
 
-push m;
-get;
+push s
+push take substantially longer - i.e. 10-50 times longer.
+call stringNew
+push s
+call stringPrint
+push 32
+printc
+push 10
+printc
 
-dupl;
-dupl;
-
-
-push 10;
-printc;
-
-
-push s;
-push Message:;
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
-
-
-//push 1782880;
-printn;
-push 10;
-printc;
-push 10;
-printc;
-
-
-//push 1782880;
-call elGamalEncrypt;
+push s
+push Don't forget to bring your coffee!
+call stringNew
+push s
+call stringPrint
+push 32
+printc
 
 
-push 10;
-printc;
+push 10
+printc
+push 10
+printc
 
-push m;
-printc;
-push 32;
-printc;
-
-call elGamalDecrypt;
-printn;
-
-push 10;
-printc;
-push 10;
-printc;
-
-push s;
-push Encrypt another message? (y/n);
-call stringNew;
-push s;
-call stringPrint;
-push 32;
-printc;
-
-push m;
-readc;
-
-push m;
-get;
-
-push y;
-sub;
-push 10;
-printc;
-jzero CALL_INPUT_LOOP;
+label CALL_INPUT_LOOP
 
 
-push s;
-push Thank you for your patience, have a nice day!;
-call stringNew;
-push s;
-call stringPrint;
+push 10
+printc
+
+push s
+push Please enter your matriculation number: 
+call stringNew
+push s
+call stringPrint
+push 32
+printc
+
+push m
+readn
+
+push m
+get
+
+dupl
+dupl
 
 
-exit;
+push 10
+printc
+
+
+push s
+push Message:
+call stringNew
+push s
+call stringPrint
+push 32
+printc
+
+
+//push 1782880
+printn
+push 10
+printc
+push 10
+printc
+
+
+//push 1782880
+call elGamalEncrypt
+
+
+push 10
+printc
+
+push m
+printc
+push 32
+printc
+
+call elGamalDecrypt
+printn
+
+push 10
+printc
+push 10
+printc
+
+push s
+push Encrypt another message? (y/n)
+call stringNew
+push s
+call stringPrint
+push 32
+printc
+
+push m
+readc
+
+push m
+get
+
+push y
+sub
+push 10
+printc
+jzero CALL_INPUT_LOOP
+
+
+push s
+push Thank you for your patience, have a nice day!
+call stringNew
+push s
+call stringPrint
+
+
+exit

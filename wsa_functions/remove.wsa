@@ -1,8 +1,8 @@
-label remove;
+label remove
 
 //retrieve value from heap
 //delete it
-get;
-pop;
+get
+pop
 
-ret;
+ret

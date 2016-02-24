@@ -1,5 +1,5 @@
-import arraySize;
-import charAppend;
+import arraySize
+import charAppend
 //set the specified cell in the array
 //expects three items on the stack
 //from top to bottom:
@@ -7,43 +7,43 @@ import charAppend;
 //cell
 //array
 
-label arraySet;
+label arraySet
 
-swap;
-dupl;
-jneg ARRAYSET_NEG;
+swap
+dupl
+jneg ARRAYSET_NEG
 
 //compute size - index
-copy 3;
-call arraySize;
-copy 2;
-sub;
+copy 3
+call arraySize
+copy 2
+sub
 
 //if index is out of bounds return
-dupl;
-jneg ARRAYSET_NEG;
-jzero ARRAYSET_NEG;
+dupl
+jneg ARRAYSET_NEG
+jzero ARRAYSET_NEG
 
-swap;
+swap
 //get array and cell
-copy 3;
-copy 3;
+copy 3
+copy 3
 
 //build address and store value
-call charAppend;
-swap;
-store;
+call charAppend
+swap
+store
 
 //discard array and cell
-pop;
-pop;
+pop
+pop
 
-ret;
+ret
 
 
 //return if index is negative
-label ARRAYSET_NEG;
-pop;
-pop;
-pop;
-ret;
+label ARRAYSET_NEG
+pop
+pop
+pop
+ret

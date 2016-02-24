@@ -1,18 +1,18 @@
-import signum;
+import signum
 
-label abs;
+label abs
 
 //duplicate value to get sign
-dupl;
-call signum;
-jneg ABS_CHANGE;
+dupl
+call signum
+jneg ABS_CHANGE
 
 //if value is positive, return
-jump ABS_END;
+jump ABS_END
 
 //if value is negative multiply with -1
-label ABS_CHANGE;
-push -1;
-mul;
-label ABS_END;
-ret;
+label ABS_CHANGE
+push -1
+mul
+label ABS_END
+ret

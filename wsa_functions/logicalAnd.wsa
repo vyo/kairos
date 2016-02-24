@@ -1,14 +1,14 @@
-label logicalAnd;
+label logicalAnd
 
 
-add;
-push 2;
-sub;
-jzero LOGICALAND_TRUE;
-push 0;
-jump LOGICALAND_END;
-label LOGICALAND_TRUE;
-push 1;
-label LOGICALAND_END;
+add
+push 2
+sub
+jzero LOGICALAND_TRUE
+push 0
+jump LOGICALAND_END
+label LOGICALAND_TRUE
+push 1
+label LOGICALAND_END
 
-ret;
+ret

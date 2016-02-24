@@ -1,13 +1,13 @@
 //tests if a > b
 //returns 1 if true, 0 otherwise
 
-label greaterThan;
+label greaterThan
 
-swap;
-sub;
-jneg GREATERTHAN_TRUE;
-push 0;
-ret;
-label GREATERTHAN_TRUE;
-push 1;
-ret;
+swap
+sub
+jneg GREATERTHAN_TRUE
+push 0
+ret
+label GREATERTHAN_TRUE
+push 1
+ret

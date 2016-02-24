@@ -1,29 +1,29 @@
-import bitwiseNot;
-import signum;
+import bitwiseNot
+import signum
 //FOR USE WITH BITWISE OPERATIONS ONLY!
 //due to internal sign/magnitude representation
 //zeros following the sign are lost
 //backwards conversion is impossible!
 
-label twosComplement;
+label twosComplement
 
-dupl;
-call signum;
-dupl;
+dupl
+call signum
+dupl
 //if value is positive we are done here
-jneg TWOSCOMPLEMENT_NEG;
-pop;
-ret;
+jneg TWOSCOMPLEMENT_NEG
+pop
+ret
 
 //get positive value, flip bits, add 1, done
-label TWOSCOMPLEMENT_NEG;
-mul;
-call bitwiseNot;
-push -1;
-mul;
-push 1;
-add;
-push -1;
-mul;
+label TWOSCOMPLEMENT_NEG
+mul
+call bitwiseNot
+push -1
+mul
+push 1
+add
+push -1
+mul
 
-ret;
+ret

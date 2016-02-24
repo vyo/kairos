@@ -1,9 +1,9 @@
 //gets the size of an array
-import get;
+import get
 
 
-label arraySize;
+label arraySize
 
-call get;
+call get
 
-ret;
+ret

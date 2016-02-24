@@ -1,6 +1,6 @@
-import arrayNew;
-import arraySize;
-import charAppend;
+import arrayNew
+import arraySize
+import charAppend
 //resizes an array and deletes cells if necessary
 //expects from top to bottom:
 //new size
@@ -8,49 +8,49 @@ import charAppend;
 //NOTE: cells are not being initialized if array
 //is being expanded!
 
-label arrayResize;
+label arrayResize
 
 //get current size of array on top, thus we have now
 //current size -> new size -> label
-copy 2;
-call arraySize;
+copy 2
+call arraySize
 
 //save new size
-copy 2;
-swap;
+copy 2
+swap
 
 //turn sizes into indices, thus we have now
 //index -> max index -> label
 //index starts at old maximum index +1 
-push 1;
-sub;
-swap;
+push 1
+sub
+swap
 
 
 //while index <= max index
-label ARRAYRESIZE_LOOP;
-copy 2;
-copy 2;
-sub;
-jneg ARRAYRESIZE_END;
+label ARRAYRESIZE_LOOP
+copy 2
+copy 2
+sub
+jneg ARRAYRESIZE_END
 
-dupl;
+dupl
 //retrieve and discard array[i]
-copy 5;
-swap;
-call charAppend;
-get;
-pop;
+copy 5
+swap
+call charAppend
+get
+pop
 
-push 1;
-add;
+push 1
+add
 
-jump ARRAYRESIZE_LOOP;
+jump ARRAYRESIZE_LOOP
 
 //adjust size entry to new size
-label ARRAYRESIZE_END;
-pop;
-pop;
-call arrayNew;
+label ARRAYRESIZE_END
+pop
+pop
+call arrayNew
 
-ret;
+ret

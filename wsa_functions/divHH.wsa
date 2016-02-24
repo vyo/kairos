@@ -1,23 +1,23 @@
 //performs an operation on the heap
 //takes a heap address as left hand operand
 //and a heap address as right hand operand
-label divHH;
+label divHH
 
 //get key
-swap;
+swap
 //duplicate key
-dupl;
+dupl
 //get value
-get;
+get
 //get second operand on top
-copy 3;
+copy 3
 //get value
-get;
+get
 //perform operation
-div;
+div
 //store result in initial location
-store;
+store
 //remove second operand
-pop;
+pop
 
-ret;
+ret

@@ -1,17 +1,17 @@
-label max;
+label max
 
-copy 2;
-copy 2;
+copy 2
+copy 2
 
-sub;
+sub
 
-jneg MAX_SECOND;
-jump MAX_END;
+jneg MAX_SECOND
+jump MAX_END
 
-label MAX_SECOND;
-swap;
+label MAX_SECOND
+swap
 
-label MAX_END;
-pop;
+label MAX_END
+pop
 
-ret;
+ret

@@ -1,18 +1,18 @@
-label get;
+label get
 
 //duplicate key
-dupl;
+dupl
 //get value
-get;
+get
 
 //copy key and value
 //store value again
-copy 2;
-copy 2;
-store;
-swap;
-pop;
+copy 2
+copy 2
+store
+swap
+pop
 
 
 
-ret;
+ret

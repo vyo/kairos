@@ -1,82 +1,82 @@
-import abs;
-import get;
+import abs
+import get
 
 //computes the logarithm of a given value
 //to a given base
 //expects:
 //base
 //number
-label log;
+label log
 
 
 
 //check if input values are negative, change sign if so
-call abs;
-swap;
-call abs;
-swap;
+call abs
+swap
+call abs
+swap
 
 //store log base
-push LOG_BASE_TEMP;
-swap;
-store;
+push LOG_BASE_TEMP
+swap
+store
 
 //store value
-push LOG_VALUE_TEMP;
-swap;
-store;
+push LOG_VALUE_TEMP
+swap
+store
 
 
 
-push 1;
-dupl;
+push 1
+dupl
 
-label LOG_INCREASE;
+label LOG_INCREASE
 //discard top item if only one check was performed
-pop;
-label LOG_INCREASE2;
+pop
+label LOG_INCREASE2
 
 //multiply by log base, to check next greater power
-push LOG_BASE_TEMP;
-call get;
-mul;
+push LOG_BASE_TEMP
+call get
+mul
 
 //subtract input value
-dupl;
-push LOG_VALUE_TEMP;
-call get;
-sub;
+dupl
+push LOG_VALUE_TEMP
+call get
+sub
 
 //duplicate check value because of double checks
-dupl;
-jneg LOG_INCREASE;
-jzero LOG_INCREASE2;
+dupl
+jneg LOG_INCREASE
+jzero LOG_INCREASE2
 
 //set x = 0, move it beneath base^x+c
-push 0;
-swap;
+push 0
+swap
 
-label LOG_DECREASE;
+label LOG_DECREASE
 
 //divide by base
-push LOG_BASE_TEMP;
-call get;
-div;
+push LOG_BASE_TEMP
+call get
+div
 //check if result == 1
-dupl;
-push 1;
-sub;
-jzero LOG_END;
+dupl
+push 1
+sub
+jzero LOG_END
 //swap items, increase x by 1, swap again
-swap;
-push 1;
-add;
-swap;
-jump LOG_DECREASE;
+swap
+push 1
+add
+swap
+jump LOG_DECREASE
 
 
 
-label LOG_END;
-pop;
+label LOG_END
+pop
 
-ret;
+ret

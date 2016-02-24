@@ -1,26 +1,26 @@
-import arrayGet;
-import arraySet;
+import arrayGet
+import arraySet
 //increments the given loop's index
 //expects the loops label on the stack
 
-label loopInc;
+label loopInc
 
-dupl;
+dupl
 
 //get current index
-push 0;
-call arrayGet;
+push 0
+call arrayGet
 
 
-copy 2;
+copy 2
 //get increment value
-push 2;
-call arrayGet;
+push 2
+call arrayGet
 
 //add values and store result
-add;
-push 0;
-swap;
-call arraySet;
+add
+push 0
+swap
+call arraySet
 
-ret;
+ret

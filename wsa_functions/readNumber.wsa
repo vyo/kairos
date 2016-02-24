@@ -5,10 +5,10 @@
 
 
 
-label readNumber;
+label readNumber
 
 
-dupl;
-readn;
+dupl
+readn
 
-ret;
+ret

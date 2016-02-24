@@ -1,12 +1,12 @@
 //tests if a < b
 //returns 1 if true, 0 otherwise
 
-label lessThan;
+label lessThan
 
-sub;
-jneg LESSTHAN_TRUE;
-push 0;
-ret;
-label LESSTHAN_TRUE;
-push 1;
-ret;
+sub
+jneg LESSTHAN_TRUE
+push 0
+ret
+label LESSTHAN_TRUE
+push 1
+ret

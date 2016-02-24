@@ -1,13 +1,13 @@
 //deletes an array
 //expects a label on the stack
 
-import arrayResize;
+import arrayResize
 
-label arrayDelete;
+label arrayDelete
 
-dupl;
-push 0;
-call arrayResize;
-get;
+dupl
+push 0
+call arrayResize
+get
 
-ret;
+ret

@@ -1,140 +1,140 @@
-import arrayNew;
-import arrayGet;
-import arraySet;
-import get;
-import pow;
-import get;
-import shiftRight;
+import arrayNew
+import arrayGet
+import arraySet
+import get
+import pow
+import get
+import shiftRight
 
 //tt800, a pseudo random number generator akin to the 
 //much larger mersenne twister
 //see http://en.wikipedia.org/wiki/Mersenne-Twister 
 //for reference
-label tt800Init;
+label tt800Init
 
 
 //store 2^32 as a constant to limit values to 32 bit
-push TT800_MAX;
-push 2;
-push 32;
-call pow;
-store;
+push TT800_MAX
+push 2
+push 32
+call pow
+store
 
-push TT800_N;
-push 25;
-store;
+push TT800_N
+push 25
+store
 
-push TT800_M;
-push 7;
-store;
+push TT800_M
+push 7
+store
 
-push TT800_A;
-push 2;
-call arrayNew;
+push TT800_A
+push 2
+call arrayNew
 
-push TT800_A;
-push 0;
-push 0;
-call arraySet;
+push TT800_A
+push 0
+push 0
+call arraySet
 
-push TT800_A;
-push 1;
-push 0x8ebfd028;
-call arraySet;
+push TT800_A
+push 1
+push 0x8ebfd028
+call arraySet
 
-push TT800_Y;
-push 25;
-call arrayNew;
+push TT800_Y
+push 25
+call arrayNew
 
-push TT800_N;
-call get;
-push 1;
-add;
-push TT800_INDEX;
-swap;
-store;
+push TT800_N
+call get
+push 1
+add
+push TT800_INDEX
+swap
+store
 
 
 //r = 9
-push TT800INIT_R;
-push 9;
-store;
+push TT800INIT_R
+push 9
+store
 //s = 3402
-push TT800INIT_S;
-push 3402;
-store;
+push TT800INIT_S
+push 3402
+store
 //k = 0
-push TT800INIT_K;
-push 0;
-store;
+push TT800INIT_K
+push 0
+store
 
 //FIRST LOOP START
 //for (k = 0; k<N; k++)
-label TT800INIT_FIRSTLOOP;
-push TT800INIT_K;
-call get;
-push TT800_N;
-call get;
-sub;
-jzero TT800INIT_FIRSTLOOP_END;
+label TT800INIT_FIRSTLOOP
+push TT800INIT_K
+call get
+push TT800_N
+call get
+sub
+jzero TT800INIT_FIRSTLOOP_END
 
 //loop body
 
-//r = 509845221 * r + 3;
-push TT800INIT_R;
-get;
-push 509845221;
-mul;
-push 3;
-add;
-push TT800_MAX;
-call get;
-mod;
-push TT800INIT_R;
-swap;
-store;
+//r = 509845221 * r + 3
+push TT800INIT_R
+get
+push 509845221
+mul
+push 3
+add
+push TT800_MAX
+call get
+mod
+push TT800INIT_R
+swap
+store
 
-//s *= s + 1;
-push TT800INIT_S;
-get;
-dupl;
-push 1;
-add;
-mul;
-push TT800_MAX;
-call get;
-mod;
-push TT800INIT_S;
-swap;
-store;
+//s *= s + 1
+push TT800INIT_S
+get
+dupl
+push 1
+add
+mul
+push TT800_MAX
+call get
+mod
+push TT800INIT_S
+swap
+store
 
-//y[k] = s + (r >> 10);
-push TT800_Y;
-push TT800INIT_K;
-call get;
-push TT800INIT_S;
-call get;
-push TT800INIT_R;
-call get;
-push 10;
-call shiftRight;
-add;
-push TT800_MAX;
-call get;
-mod;
-
-
-
-call arraySet;
+//y[k] = s + (r >> 10)
+push TT800_Y
+push TT800INIT_K
+call get
+push TT800INIT_S
+call get
+push TT800INIT_R
+call get
+push 10
+call shiftRight
+add
+push TT800_MAX
+call get
+mod
 
 
-push TT800INIT_K;
-push 1;
-call addH;
-jump TT800INIT_FIRSTLOOP;
+
+call arraySet
+
+
+push TT800INIT_K
+push 1
+call addH
+jump TT800INIT_FIRSTLOOP
 //FIRST LOOP END
 
-label TT800INIT_FIRSTLOOP_END;
+label TT800INIT_FIRSTLOOP_END
 
 
-ret;
+ret

@@ -1,62 +1,62 @@
-import get;
-import intAppend;
-import log2;
-import shiftRight;
-import tt800GetRandom;
+import get
+import intAppend
+import log2
+import shiftRight
+import tt800GetRandom
 
 //get a random number in the specified range
 //expects:
 //upper bound (exclusive)
 //lower bound (inclusive)
 
-label tt800GetRandomRange;
+label tt800GetRandomRange
 
 //subtract lower bound from upper to 
 //reduce total range of numbers
 //lower bound will be added afterwards
-copy 2;
-sub;
+copy 2
+sub
 
-dupl;
-call log2;
-push 32;
-div;
-push TT800GETRANDOMRANGE_COMPOSITE;
-swap;
-store;
+dupl
+call log2
+push 32
+div
+push TT800GETRANDOMRANGE_COMPOSITE
+swap
+store
 
 //generate prime
 //concatenate numbers if necessary
-call tt800GetRandom;
+call tt800GetRandom
 
-label TT800GETRANDOMRANGE_LOOP;
-push TT800GETRANDOMRANGE_COMPOSITE;
-call get;
-jzero TT800GETRANDOMRANGE_LOOP_END;
+label TT800GETRANDOMRANGE_LOOP
+push TT800GETRANDOMRANGE_COMPOSITE
+call get
+jzero TT800GETRANDOMRANGE_LOOP_END
 
-call tt800GetRandom;
-call intAppend;
+call tt800GetRandom
+call intAppend
 
-push TT800GETRANDOMRANGE_COMPOSITE;
-push TT800GETRANDOMRANGE_COMPOSITE;
-call get;
-push 1;
-sub;
-store;
-jump TT800GETRANDOMRANGE_LOOP;
-label TT800GETRANDOMRANGE_LOOP_END;
+push TT800GETRANDOMRANGE_COMPOSITE
+push TT800GETRANDOMRANGE_COMPOSITE
+call get
+push 1
+sub
+store
+jump TT800GETRANDOMRANGE_LOOP
+label TT800GETRANDOMRANGE_LOOP_END
 
 
 // reduce to upper bound - lower bound
-copy 2;
-mod;
+copy 2
+mod
 
 
 //expand to upper bound again
-copy 3;
-add;
+copy 3
+add
 
 
-label TT800GETRANDOMRANGE_END;
-slide 2;
-ret;
+label TT800GETRANDOMRANGE_END
+slide 2
+ret

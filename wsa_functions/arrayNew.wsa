@@ -3,8 +3,8 @@
 //in the heap with its max length as value
 //store again to change length
 
-label arrayNew;
+label arrayNew
 
-store;
+store
 
-ret;
+ret

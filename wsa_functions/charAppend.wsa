@@ -7,16 +7,16 @@
 //sequence
 
 
-label charAppend;
+label charAppend
 
 //left shift by 8
-push 256;
+push 256
 
-copy 3;
-mul;
-add;
-swap;
-pop;
+copy 3
+mul
+add
+swap
+pop
 
 
-ret;
+ret

@@ -1,148 +1,148 @@
-import abs;
-import addH;
-import divH;
-import get;
-import getSignBit;
-import log2;
-import logicalXor;
-import max;
-import modH;
-import pow;
-import println;
-import signum;
+import abs
+import addH
+import divH
+import get
+import getSignBit
+import log2
+import logicalXor
+import max
+import modH
+import pow
+import println
+import signum
 
-label bitwiseXor;
+label bitwiseXor
 
 //copy values to extract signs
-copy 2;
-copy 2;
+copy 2
+copy 2
 
 //get sign of a, store it
-call signum;
-push BITWISEXOR_SIGN_A;
-swap;
-store;
+call signum
+push BITWISEXOR_SIGN_A
+swap
+store
 //get sign of b, store it
-call signum;
-push BITWISEXOR_SIGN_B;
-swap;
-store;
+call signum
+push BITWISEXOR_SIGN_B
+swap
+store
 
 //get absolute values of a and b
 //to facilitate bitwise traversal
-call abs;
-swap;
-call abs;
-swap;
+call abs
+swap
+call abs
+swap
 
 //copy values to get maximum bitwitdth
-copy 2;
-copy 2;
+copy 2
+copy 2
 
-call max;
-call log2;
+call max
+call log2
 
 //store bit BITWISEXOR_WIDTH
-push BITWISEXOR_WIDTH;
-swap;
-store;
+push BITWISEXOR_WIDTH
+swap
+store
 
 //store b
-push BITWISEXOR_B;
-swap;
-store;
+push BITWISEXOR_B
+swap
+store
 
 //store a
-push BITWISEXOR_A;
-swap;
-store;
+push BITWISEXOR_A
+swap
+store
 
 //store loop variable
-push i;
-push 0;
-store;
+push i
+push 0
+store
 
 //store preliminary BITWISEXOR_RESULT
-push BITWISEXOR_RESULT;
-push 0;
-store;
+push BITWISEXOR_RESULT
+push 0
+store
 
 
-label BITWISEXOR_LOOP;
-push BITWISEXOR_WIDTH;
-call get;
-push i;
-call get;
+label BITWISEXOR_LOOP
+push BITWISEXOR_WIDTH
+call get
+push i
+call get
 
 //check if BITWISEXOR_WIDTH - i < 0
 //i.e. all bits have been checked
-sub;
+sub
 
-jneg BITWISEXOR_END;
+jneg BITWISEXOR_END
 
-push BITWISEXOR_A;
-call get;
-push 2;
-mod;
+push BITWISEXOR_A
+call get
+push 2
+mod
 
-push BITWISEXOR_B;
-call get;
-push 2;
-mod;
+push BITWISEXOR_B
+call get
+push 2
+mod
 
-call logicalXor;
+call logicalXor
 
 //multiply bit BITWISEXOR_RESULT with 2^i and add to BITWISEXOR_RESULT
 //i.e. set the respective bit in the BITWISEXOR_RESULT
-push 2;
-push i;
-call get;
+push 2
+push i
+call get
 
-call pow;
-mul;
+call pow
+mul
 
-push BITWISEXOR_RESULT;
-get;
-add;
-push BITWISEXOR_RESULT;
-swap;
-store;
+push BITWISEXOR_RESULT
+get
+add
+push BITWISEXOR_RESULT
+swap
+store
 
-push BITWISEXOR_A;
-push 2;
-call divH;
+push BITWISEXOR_A
+push 2
+call divH
 
-push BITWISEXOR_B;
-push 2;
-call divH;
+push BITWISEXOR_B
+push 2
+call divH
 
-push i;
-push 1;
-call addH;
+push i
+push 1
+call addH
 
-jump BITWISEXOR_LOOP;
+jump BITWISEXOR_LOOP
 
-label BITWISEXOR_END;
+label BITWISEXOR_END
 //change signs to their internal representation
 //i.e. -1 to 1, 0 to 0, 1 to 0
-push BITWISEXOR_SIGN_A;
-get;
-call getSignBit;
+push BITWISEXOR_SIGN_A
+get
+call getSignBit
 
 
-push BITWISEXOR_SIGN_B;
-get;
-call getSignBit;
+push BITWISEXOR_SIGN_B
+get
+call getSignBit
 
 //operate on sign bit
-call logicalXor;
-push BITWISEXOR_RESULT;
-get;
-swap;
+call logicalXor
+push BITWISEXOR_RESULT
+get
+swap
 
-jzero BITWISEXOR_POSITIVE;
-push -1;
-mul;
-label BITWISEXOR_POSITIVE;
+jzero BITWISEXOR_POSITIVE
+push -1
+mul
+label BITWISEXOR_POSITIVE
 
-ret;
+ret

@@ -1,7 +1,7 @@
-label printnln;
+label printnln
 
-printn;
-push 10;
-printc;
+printn
+push 10
+printc
 
-ret;
+ret

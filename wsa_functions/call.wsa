@@ -1,4 +1,4 @@
-label call;
-push 10;
-printn;
-exit;
+label call
+push 10
+printn
+exit

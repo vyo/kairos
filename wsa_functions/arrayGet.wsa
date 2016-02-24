@@ -1,6 +1,6 @@
-import arraySize;
-import charAppend;
-import get;
+import arraySize
+import charAppend
+import get
 //get the specified cell in the array
 //returns 0 if index is out of bounds
 //expects two items on the stack, from
@@ -8,42 +8,42 @@ import get;
 //cell
 //array
 
-label arrayGet;
+label arrayGet
 
-dupl;
-jneg ARRAYGET_NEG;
-jump ARRAYGET_POS;
+dupl
+jneg ARRAYGET_NEG
+jump ARRAYGET_POS
 
 //if index is negative return 0
-label ARRAYGET_NEG;
-pop;
-pop;
-push 0;
-ret;
+label ARRAYGET_NEG
+pop
+pop
+push 0
+ret
 
 
-label ARRAYGET_POS;
+label ARRAYGET_POS
 
 //duplicate cell number, compute size - index
-dupl;
-copy 3;
-call arraySize;
-swap;
-sub;
+dupl
+copy 3
+call arraySize
+swap
+sub
 //return 0 if out of bounds
-push 0;
-swap;
-dupl;
-jzero ARRAYGET_END;
-dupl;
-jneg ARRAYGET_END;
-pop;
-pop;
+push 0
+swap
+dupl
+jzero ARRAYGET_END
+dupl
+jneg ARRAYGET_END
+pop
+pop
 
-call charAppend;
-call get;
-dupl;
+call charAppend
+call get
+dupl
 
-label ARRAYGET_END;
-pop;
-ret;
+label ARRAYGET_END
+pop
+ret

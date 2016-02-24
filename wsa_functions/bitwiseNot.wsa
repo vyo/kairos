@@ -1,121 +1,121 @@
-import abs;
-import addH;
-import divH;
-import get;
-import getSignBit;
-import log2;
-import logicalNot;
-import max;
-import modH;
-import pow;
-import println;
-import signum;
+import abs
+import addH
+import divH
+import get
+import getSignBit
+import log2
+import logicalNot
+import max
+import modH
+import pow
+import println
+import signum
 
-label bitwiseNot;
+label bitwiseNot
 
 //copy value to extract sign
-dupl;
+dupl
 
 //get sign of a, store it
-call signum;
-push BITWISENOT_SIGN_A;
-swap;
-store;
+call signum
+push BITWISENOT_SIGN_A
+swap
+store
 
 
 //get absolute values of a
 //to facilitate bitwise traversal
-call abs;
+call abs
 
 
 //copy values to get maximum bitwitdth
-dupl;
-call log2;
+dupl
+call log2
 
 //store bit BITWISENOT_WIDTH
-push BITWISENOT_WIDTH;
-swap;
-store;
+push BITWISENOT_WIDTH
+swap
+store
 
 
 //store a
-push BITWISENOT_A;
-swap;
-store;
+push BITWISENOT_A
+swap
+store
 
 //store loop variable
-push i;
-push 0;
-store;
+push i
+push 0
+store
 
 //store preliminary BITWISENOT_RESULT
-push BITWISENOT_RESULT;
-push 0;
-store;
+push BITWISENOT_RESULT
+push 0
+store
 
 
-label BITWISENOT_LOOP;
-push BITWISENOT_WIDTH;
-call get;
-push i;
-call get;
+label BITWISENOT_LOOP
+push BITWISENOT_WIDTH
+call get
+push i
+call get
 
 //check if BITWISENOT_WIDTH - i < 0
 //i.e. all bits have been checked
-sub;
+sub
 
-jneg BITWISENOT_END;
+jneg BITWISENOT_END
 
-push BITWISENOT_A;
-call get;
-push 2;
-mod;
+push BITWISENOT_A
+call get
+push 2
+mod
 
-call logicalNot;
+call logicalNot
 
 //multiply bit BITWISENOT_RESULT with 2^i and add to BITWISENOT_RESULT
 //i.e. set the respective bit in the BITWISENOT_RESULT
-push 2;
-push i;
-call get;
+push 2
+push i
+call get
 
-call pow;
-mul;
+call pow
+mul
 
-push BITWISENOT_RESULT;
-get;
-add;
-push BITWISENOT_RESULT;
-swap;
-store;
+push BITWISENOT_RESULT
+get
+add
+push BITWISENOT_RESULT
+swap
+store
 
-push BITWISENOT_A;
-push 2;
-call divH;
+push BITWISENOT_A
+push 2
+call divH
 
-push i;
-push 1;
-call addH;
+push i
+push 1
+call addH
 
-jump BITWISENOT_LOOP;
+jump BITWISENOT_LOOP
 
-label BITWISENOT_END;
+label BITWISENOT_END
 //change signs to their internal representation
 //i.e. -1 to 1, 0 to 0, 1 to 0
-push BITWISENOT_SIGN_A;
-get;
-call getSignBit;
+push BITWISENOT_SIGN_A
+get
+call getSignBit
 
 
 //operate on sign bit
-call logicalNot;
-push BITWISENOT_RESULT;
-get;
-swap;
+call logicalNot
+push BITWISENOT_RESULT
+get
+swap
 
-jzero BITWISENOT_POSITIVE;
-push -1;
-mul;
-label BITWISENOT_POSITIVE;
+jzero BITWISENOT_POSITIVE
+push -1
+mul
+label BITWISENOT_POSITIVE
 
-ret;
+ret

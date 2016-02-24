@@ -1,6 +1,6 @@
-label println;
+label println
 
-push 10;
-printc;
+push 10
+printc
 
-ret;
+ret

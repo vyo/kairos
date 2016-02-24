@@ -1,339 +1,339 @@
-import get;
-import isPrime;
-import pow;
-import powMod;
-import tt800GetRandom;
-import tt800GetRandomRange;
+import get
+import isPrime
+import pow
+import powMod
+import tt800GetRandom
+import tt800GetRandomRange
 //implementation of the elGamal public key cryptsystem
 //expects a number on the stack
 //returns c1 and c2 from bottom to top
 
-label elGamalEncrypt;
+label elGamalEncrypt
 
 
-call ELGAMAL_GERMAIN;
-call ELGAMAL_GENERATOR;
-call ELGAMAL_SECRETEXPONENT;
-call ELGAMAL_PUBLICEXPONENT;
-call ELGAMAL_RANDOMEXPONENT;
-call ELGAMAL_CIPHER1;
-call ELGAMAL_CIPHER2;
+call ELGAMAL_GERMAIN
+call ELGAMAL_GENERATOR
+call ELGAMAL_SECRETEXPONENT
+call ELGAMAL_PUBLICEXPONENT
+call ELGAMAL_RANDOMEXPONENT
+call ELGAMAL_CIPHER1
+call ELGAMAL_CIPHER2
 
-push ELGAMAL_C1;
-call get;
+push ELGAMAL_C1
+call get
 
-push ELGAMAL_C2;
-call get;
+push ELGAMAL_C2
+call get
 
-ret;
+ret
 
 
 
 //get a Sophie-Germain-prime, i.e. a p that fulfills
 // 2p'+1 = p with p' and p prime
-label ELGAMAL_GERMAIN;
+label ELGAMAL_GERMAIN
 
 //dummy value
-push 0;
+push 0
 
-label ELGAMAL_GERMAIN_LOOP;
-pop;
+label ELGAMAL_GERMAIN_LOOP
+pop
 
-push 0;
+push 0
 
-push 2;
-push 96;
-call pow;
+push 2
+push 96
+call pow
 //get 96 bit random integer
-call tt800GetRandomRange;
+call tt800GetRandomRange
 
 
-dupl;
-push ELGAMAL_PS;
-swap;
-store;
+dupl
+push ELGAMAL_PS
+swap
+store
 
-dupl;
-push 10;
+dupl
+push 10
 //test for primality of p'
-call isPrime;
+call isPrime
 
-jzero ELGAMAL_GERMAIN_LOOP;
+jzero ELGAMAL_GERMAIN_LOOP
 
 //////////////////
-//push p;
-//printc;
-//push ';
-//printc;
-//push 32;
-//printc;
-//dupl;
-//printn;
-//push 10;
-//printc;
+//push p
+//printc
+//push '
+//printc
+//push 32
+//printc
+//dupl
+//printn
+//push 10
+//printc
 /////////////////
 
 
 //test for primality of 2p' +1
-push 2;
-mul;
-push 1;
-add;
-dupl;
-push 10;
-call isPrime;
-jzero ELGAMAL_GERMAIN_LOOP;
+push 2
+mul
+push 1
+add
+dupl
+push 10
+call isPrime
+jzero ELGAMAL_GERMAIN_LOOP
 
 //////////////////
-push p;
-printc;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push p
+printc
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_P;
-swap;
-store;
+push ELGAMAL_P
+swap
+store
 
-ret;
+ret
 
 //find a generator of the group given by the input
-label ELGAMAL_GENERATOR;
+label ELGAMAL_GENERATOR
 
 //dummy value
-push 0;
+push 0
 
-label ELGAMAL_GENERATOR_LOOP;
-pop;
+label ELGAMAL_GENERATOR_LOOP
+pop
 
-push 0;
+push 0
 
-push 2;
-push 96;
-call pow;
+push 2
+push 96
+call pow
 //get 96 bit random integer
-call tt800GetRandomRange;
+call tt800GetRandomRange
 
-dupl;
+dupl
 //g may not be zero
-jzero ELGAMAL_GENERATOR_LOOP;
+jzero ELGAMAL_GENERATOR_LOOP
 
-dupl;
+dupl
 //g may not be one
-push 1;
-sub;
-jzero ELGAMAL_GENERATOR_LOOP;
+push 1
+sub
+jzero ELGAMAL_GENERATOR_LOOP
 
-dupl;
+dupl
 //g may not be negative
-jneg ELGAMAL_GENERATOR_LOOP;
+jneg ELGAMAL_GENERATOR_LOOP
 
-dupl;
+dupl
 //g^2 mod p my not be one
-push 2;
-push ELGAMAL_P;
-call get;
-call powMod;
-push 1;
-sub;
-jzero ELGAMAL_GENERATOR_LOOP;
+push 2
+push ELGAMAL_P
+call get
+call powMod
+push 1
+sub
+jzero ELGAMAL_GENERATOR_LOOP
 
-dupl;
+dupl
 //g^p' mod p my not be one
-push ELGAMAL_PS;
-call get;
-push ELGAMAL_P;
-call get;
-call powMod;
-push 1;
-sub;
-jzero ELGAMAL_GENERATOR_LOOP;
+push ELGAMAL_PS
+call get
+push ELGAMAL_P
+call get
+call powMod
+push 1
+sub
+jzero ELGAMAL_GENERATOR_LOOP
 
 
 //////////////////
-push g;
-printc;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push g
+printc
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_G;
-swap;
-store;
+push ELGAMAL_G
+swap
+store
 
-ret;
+ret
 
 
 
 //generate secret exponent a
-label ELGAMAL_SECRETEXPONENT;
+label ELGAMAL_SECRETEXPONENT
 
-push 1;
+push 1
 
-push ELGAMAL_P;
-call get;
+push ELGAMAL_P
+call get
 //get random integer between 0 and p
-call tt800GetRandomRange;
+call tt800GetRandomRange
 
 //////////////////
-push a;
-printc;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push a
+printc
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_A;
-swap;
-store;
+push ELGAMAL_A
+swap
+store
 
-ret;
+ret
 
 
 //generate public exponent h
-label ELGAMAL_PUBLICEXPONENT;
+label ELGAMAL_PUBLICEXPONENT
 
-push ELGAMAL_G;
-call get;
-push ELGAMAL_A;
-call get;
-push ELGAMAL_P;
-call get;
+push ELGAMAL_G
+call get
+push ELGAMAL_A
+call get
+push ELGAMAL_P
+call get
 
-call powMod;
+call powMod
 
 //////////////////
-push h;
-printc;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push h
+printc
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_H;
-swap;
-store;
+push ELGAMAL_H
+swap
+store
 
-ret;
+ret
 
 
 //generate random exponent k
-label ELGAMAL_RANDOMEXPONENT;
+label ELGAMAL_RANDOMEXPONENT
 
-push 0;
+push 0
 
-push ELGAMAL_P;
-call get;
+push ELGAMAL_P
+call get
 //get random integer between 0 and p
-call tt800GetRandomRange;
+call tt800GetRandomRange
 
 //////////////////
-push k;
-printc;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push k
+printc
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_K;
-swap;
-store;
+push ELGAMAL_K
+swap
+store
 
-ret;
+ret
 
 
 //compute first part of cipher
-label ELGAMAL_CIPHER1;
+label ELGAMAL_CIPHER1
 
-push ELGAMAL_G;
-call get;
-push ELGAMAL_K;
-call get;
-push ELGAMAL_P;
-call get;
+push ELGAMAL_G
+call get
+push ELGAMAL_K
+call get
+push ELGAMAL_P
+call get
 
-call powMod;
+call powMod
 
 //////////////////
-push c;
-printc;
-push 1;
-printn;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push c
+printc
+push 1
+printn
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_C1;
-swap;
-store;
+push ELGAMAL_C1
+swap
+store
 
-ret;
+ret
 
 
 //compute first part of cipher
-label ELGAMAL_CIPHER2;
+label ELGAMAL_CIPHER2
 
-push ELGAMAL_H;
-call get;
-push ELGAMAL_K;
-call get;
-push ELGAMAL_P;
-call get;
+push ELGAMAL_H
+call get
+push ELGAMAL_K
+call get
+push ELGAMAL_P
+call get
 
-call powMod;
+call powMod
 
-push ELGAMAL_C2;
-swap;
-store;
+push ELGAMAL_C2
+swap
+store
 
-push ELGAMAL_P;
-call get;
-mod;
+push ELGAMAL_P
+call get
+mod
 
-push ELGAMAL_C2;
-call get;
-mul;
+push ELGAMAL_C2
+call get
+mul
 
-push ELGAMAL_P;
-call get;
-mod;
+push ELGAMAL_P
+call get
+mod
 
 //////////////////
-push c;
-printc;
-push 2;
-printn;
-push 32;
-printc;
-dupl;
-printn;
-push 10;
-printc;
+push c
+printc
+push 2
+printn
+push 32
+printc
+dupl
+printn
+push 10
+printc
 /////////////////
 
-push ELGAMAL_C2;
-swap;
-store;
+push ELGAMAL_C2
+swap
+store
 
-ret;
+ret
